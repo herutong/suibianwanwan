@@ -33,4 +33,6 @@
 
     <!--4 : 扫描WEB 相关的bean-->
     <context:component-scan base-package="com.lottery.web"/>
+
+    <import resource="classpath:spring-web-shiro.xml"/>
 </beans>
