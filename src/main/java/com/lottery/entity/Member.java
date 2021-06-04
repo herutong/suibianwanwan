@@ -9,8 +9,17 @@ public class Member {
     private String memberPhone;
     private String memberLeader;
     private String memberGroup;
-    private String memberNumStatus;
+    private String memberNumStatus;//判断是否被锁定
     private String memberSee;
+    private long roleId;
+
+    public long getRoleId() {
+        return roleId;
+    }
+
+    public void setRoleId(long roleId) {
+        this.roleId = roleId;
+    }
 
     public String getMemberAccount() {
         return memberAccount;
@@ -82,6 +91,13 @@ public class Member {
 
     public void setMemberSee(String memberSee) {
         this.memberSee = memberSee;
+    }
+
+    public boolean getLock() {
+        return memberNumStatus=="N"?true:false;   //根据meberNumStatus 判断账号是否被锁定    N没有 Y锁定
+    }
+    public String getCredentialsSalt() {
+        return memberAccount+ memberPassword;
     }
 
     @Override

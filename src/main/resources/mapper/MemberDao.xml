@@ -2,7 +2,7 @@
 <mapper namespace="com.lottery.dao.MemberDao">
 
     <select id="findMemberByAccount" resultType="Member" parameterType="String">
-        select member_account,mermber_email,member_password,mermber_name,member_phone,member_leader,member_group,member_num_status,member_see
+        select member_account,mermber_email,member_password,mermber_name,member_phone,member_leader,member_group,member_num_status,member_see,member_roleid
         from CP_Member
         WHERE member_account = #{memberAccount}
     </select>

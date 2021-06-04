@@ -16,7 +16,7 @@
     </bean>
 
     <!-- Realm实现 -->
-    <bean id="userRealm" class="com.giit.www.realm.UserRealm">
+    <bean id="userRealm" class="com.lottery.shiro.UserRealm">
         <property name="credentialsMatcher" ref="credentialsMatcher"/>
     </bean>
 
@@ -32,7 +32,7 @@
     </bean>
 
     <!-- 基于Form表单的身份验证过滤器 -->
-    <bean id="formAuthenticationFilter" class="com.giit.www.filter.FormLoginFilter">
+    <bean id="formAuthenticationFilter" class="com.lottery.filter.FormLoginFilter">
     </bean>
 
     <!-- Shiro的Web过滤器 -->
