@@ -11,6 +11,9 @@ import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.ByteSource;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import javax.annotation.Resource;
 import java.util.Collections;
@@ -24,8 +27,10 @@ import java.util.Set;
  */
 public class UserRealm extends AuthorizingRealm {
 
-
+    Logger logger = LoggerFactory.getLogger(UserRealm.class);
+    @Autowired
     private MemberDao memberDao;
+    @Autowired
     private RoleDao roleDao;
 
     @Override
@@ -52,8 +57,14 @@ public class UserRealm extends AuthorizingRealm {
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
         String username = (String)token.getPrincipal();
+        Member member= null;
+        try{
+             member = memberDao.findMemberByAccount(username);
+            logger.info(member.toString());
+        }catch (Exception e){
+            logger.error(e.getMessage());
+        }
 
-        Member member = memberDao.findMemberByAccount(username);
 
         if(member == null) {
             throw new UnknownAccountException();//没找到帐号
